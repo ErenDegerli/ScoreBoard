@@ -27,6 +27,19 @@ public class BoardTest {
     }
 
     @Test
+    void updateMatchHomeNegativeScore() {
+        Match match = new Match("Spain", "Brazil");
+        assertThrows(IllegalArgumentException.class, () -> match.setHomeScore(-1));
+    }
+
+    @Test
+    void updateMatchAwayNegativeScore() {
+        Match match = new Match("Spain", "Brazil");
+        assertThrows(IllegalArgumentException.class, () -> match.setAwayScore(-3));
+
+    }
+
+    @Test
     void homeTeamCannotBeNull() {
         assertThrows(NullPointerException.class, () -> new Match(null, "Spain"));
     }
