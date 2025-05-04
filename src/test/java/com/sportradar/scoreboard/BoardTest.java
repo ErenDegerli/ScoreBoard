@@ -26,6 +26,14 @@ public class BoardTest {
     }
 
     @Test
+    void calculateTotalScore() {
+        Match match = new Match("Spain", "Brazil");
+        match.updateScore(1, 3);
+
+        assertEquals(4, match.totalScore());
+    }
+
+    @Test
     void updateMatchHomeNegativeScore() {
         Match match = new Match("Spain", "Brazil");
         assertThrows(IllegalArgumentException.class, () -> match.updateScore(-1, 2));
