@@ -5,15 +5,12 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static com.sportradar.scoreboard.TestConstants.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ScoreBoardTest {
 
     private ScoreBoard scoreBoard;
-    private final String ARGENTINA = "Argentina";
-    private final String AUSTRALIA = "Australia";
-    private final String SPAIN = "Spain";
-    private final String BRAZIL = "Brazil";
 
     @BeforeEach
     void setup() {
@@ -80,6 +77,23 @@ public class ScoreBoardTest {
         );
     }
 
+    @Test
+    void orderMatchesByScoreAndStartTime() {
+        startAndScoreMatch(MEXICO, CANADA, 0, 5);
+        startAndScoreMatch(SPAIN, BRAZIL, 10, 2);
+        startAndScoreMatch(GERMANY, FRANCE, 2, 2);
+        startAndScoreMatch(URUGUAY, ITALY, 6, 6);
+        startAndScoreMatch(ARGENTINA, AUSTRALIA, 3, 1);
+
+        assertSummaryOrder(
+                formatMatchSummary(URUGUAY, 6, 6, ITALY),
+                formatMatchSummary(SPAIN, 10, 2, BRAZIL),
+                formatMatchSummary(MEXICO, 0, 5, CANADA),
+                formatMatchSummary(ARGENTINA, 3, 1, AUSTRALIA),
+                formatMatchSummary(GERMANY, 2, 2, FRANCE)
+        );
+    }
+
     private String formatMatchSummary(String homeTeam, int homeScore, int awayScore, String awayTeam) {
         return String.format("%s %d - %d %s", homeTeam, homeScore, awayScore, awayTeam);
     }
@@ -90,5 +104,10 @@ public class ScoreBoardTest {
                 .toList();
 
         assertEquals(List.of(expectedMatches), actual);
+    }
+
+    private void startAndScoreMatch(String homeTeam, String awayTeam, int homeScore, int awayScore) {
+        scoreBoard.startMatch(homeTeam, awayTeam);
+        scoreBoard.updateScore(homeTeam, awayTeam, homeScore, awayScore);
     }
 }
