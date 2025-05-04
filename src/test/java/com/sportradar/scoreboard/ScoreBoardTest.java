@@ -94,6 +94,22 @@ public class ScoreBoardTest {
         );
     }
 
+    @Test
+    void finishOneMatchAndVerifySummaryOrder() {
+        startAndScoreMatch(MEXICO, CANADA, 0, 5);
+        startAndScoreMatch(SPAIN, BRAZIL, 10, 2);
+        startAndScoreMatch(GERMANY, FRANCE, 2, 2);
+
+        scoreBoard.finishMatch(SPAIN, BRAZIL);
+        startAndScoreMatch(URUGUAY, ITALY, 6, 6);
+
+        assertSummaryOrder(
+                formatMatchSummary(URUGUAY, 6, 6, ITALY),
+                formatMatchSummary(MEXICO, 0, 5, CANADA),
+                formatMatchSummary(GERMANY, 2, 2, FRANCE)
+        );
+    }
+
     private String formatMatchSummary(String homeTeam, int homeScore, int awayScore, String awayTeam) {
         return String.format("%s %d - %d %s", homeTeam, homeScore, awayScore, awayTeam);
     }
