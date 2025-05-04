@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ScoreBoardTest {
 
@@ -32,5 +31,13 @@ public class ScoreBoardTest {
                 () -> assertEquals(0, match.getHomeScore()),
                 () -> assertEquals(0, match.getAwayScore())
         );
+    }
+
+    @Test
+    void finishMatch() {
+        scoreBoard.startMatch(ARGENTINA, AUSTRALIA);
+        scoreBoard.finishMatch();
+
+        assertTrue(scoreBoard.getSummary().isEmpty());
     }
 }

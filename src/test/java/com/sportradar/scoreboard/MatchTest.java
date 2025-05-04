@@ -54,12 +54,4 @@ public class MatchTest {
     void awayTeamCannotBeNull() {
         assertThrows(NullPointerException.class, () -> new Match("Spain", null));
     }
-
-    @Test
-    void finishMatch() {
-        Match match = new Match("Spain", "Brazil");
-        match.finishMatch();
-
-        assertNull(match.getMatch());
-    }
 }
