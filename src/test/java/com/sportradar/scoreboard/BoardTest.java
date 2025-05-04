@@ -19,8 +19,7 @@ public class BoardTest {
     @Test
     void updateMatch() {
         Match match = new Match("Spain", "Brazil");
-        match.setHomeScore(1);
-        match.setAwayScore(3);
+        match.updateScore(1, 3);
 
         assertEquals(1, match.getHomeScore());
         assertEquals(3, match.getAwayScore());
