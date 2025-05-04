@@ -1,5 +1,6 @@
 package com.sportradar.scoreboard;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Match {
@@ -8,12 +9,14 @@ public class Match {
     private final String awayTeam;
     private int homeScore;
     private int awayScore;
+    private final LocalDateTime startTime;
 
     public Match(String homeTeam, String awayTeam) {
         this.homeTeam = Objects.requireNonNull(homeTeam);
         this.awayTeam = Objects.requireNonNull(awayTeam);
         this.homeScore = 0;
         this.awayScore = 0;
+        this.startTime = LocalDateTime.now();
     }
 
     public String getHomeTeam() {
@@ -49,6 +52,10 @@ public class Match {
 
     public int totalScore() {
         return homeScore + awayScore;
+    }
+
+    public LocalDateTime getStartTime() {
+        return this.startTime;
     }
 
     @Override

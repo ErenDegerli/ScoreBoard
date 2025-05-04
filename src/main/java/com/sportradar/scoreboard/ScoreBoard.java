@@ -21,7 +21,10 @@ public class ScoreBoard {
 
     public List<Match> getSummary() {
         return matches.stream()
-                .sorted(Comparator.comparingInt(Match::totalScore).reversed())
+                .sorted(Comparator.comparingInt(Match::totalScore).
+                        thenComparing(Match::getStartTime)
+                        .reversed())
+                .peek(System.out::println)
                 .toList();
     }
 
