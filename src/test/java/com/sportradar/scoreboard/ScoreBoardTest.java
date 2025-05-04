@@ -45,4 +45,19 @@ public class ScoreBoardTest {
     void finishNonExistingMatch() {
         assertThrows(IllegalArgumentException.class, () -> scoreBoard.finishMatch(ARGENTINA, AUSTRALIA));
     }
+
+    @Test
+    void updateScore() {
+        scoreBoard.startMatch(ARGENTINA, AUSTRALIA);
+        scoreBoard.updateScore(ARGENTINA, AUSTRALIA, 1, 0);
+
+        Match match = scoreBoard.getSummary().get(0);
+
+        assertAll(
+                () -> assertEquals(ARGENTINA, match.getHomeTeam()),
+                () -> assertEquals(AUSTRALIA, match.getAwayTeam()),
+                () -> assertEquals(1, match.getHomeScore()),
+                () -> assertEquals(0, match.getAwayScore())
+        );
+    }
 }
