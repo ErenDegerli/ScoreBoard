@@ -40,4 +40,9 @@ public class ScoreBoardTest {
 
         assertTrue(scoreBoard.getSummary().isEmpty());
     }
+
+    @Test
+    void finishNonExistingMatch() {
+        assertThrows(IllegalAccessError.class, () -> scoreBoard.finishMatch(ARGENTINA, AUSTRALIA));
+    }
 }
