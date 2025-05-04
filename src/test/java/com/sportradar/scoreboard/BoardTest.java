@@ -2,8 +2,7 @@ package com.sportradar.scoreboard;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BoardTest {
 
@@ -25,6 +24,16 @@ public class BoardTest {
 
         assertEquals(1, match.getHomeScore());
         assertEquals(3, match.getAwayScore());
+    }
+
+    @Test
+    void homeTeamCannotBeNull() {
+        assertThrows(NullPointerException.class, () -> new Match(null, "Spain"));
+    }
+
+    @Test
+    void awayTeamCannotBeNull() {
+        assertThrows(NullPointerException.class, () -> new Match("Spain", null));
     }
 
     @Test
