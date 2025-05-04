@@ -1,5 +1,6 @@
 package com.sportradar.scoreboard;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -13,6 +14,10 @@ public class ScoreBoardTest {
     private final String ARGENTINA = "Argentina";
     private final String AUSTRALIA = "Australia";
 
+    @BeforeEach
+    void setup() {
+        scoreBoard = new ScoreBoard();
+    }
     @Test
     void startMatch() {
         scoreBoard.startMatch(ARGENTINA, AUSTRALIA);
