@@ -20,7 +20,8 @@ public class ScoreBoard {
     public void finishMatch(String homeTeam, String awayTeam) {
         Match match = matches.stream()
                 .filter(mtc -> mtc.getHomeTeam().equals(homeTeam) && mtc.getAwayTeam().equals(awayTeam))
-                .findFirst().get();
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
 
         matches.remove(match);
     }

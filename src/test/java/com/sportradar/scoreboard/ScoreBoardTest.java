@@ -43,6 +43,6 @@ public class ScoreBoardTest {
 
     @Test
     void finishNonExistingMatch() {
-        assertThrows(IllegalAccessError.class, () -> scoreBoard.finishMatch(ARGENTINA, AUSTRALIA));
+        assertThrows(IllegalArgumentException.class, () -> scoreBoard.finishMatch(ARGENTINA, AUSTRALIA));
     }
 }
