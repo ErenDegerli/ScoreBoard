@@ -19,3 +19,6 @@ This is a simple Java Library that allows tracking and managing live football ma
 ## Technologies
 - JUnit5
 - Maven
+
+## Author
+Built as a coding exercise by [Eren Degerli]
