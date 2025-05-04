@@ -29,7 +29,6 @@ public class Match {
     }
 
     public void setHomeScore(int homeScore) {
-        if(homeScore < 0) throw new IllegalArgumentException();
         this.homeScore = homeScore;
     }
 
@@ -38,7 +37,13 @@ public class Match {
     }
 
     public void setAwayScore(int awayScore) {
-        if(awayScore < 0) throw new IllegalArgumentException();
+        this.awayScore = awayScore;
+    }
+
+    public void updateScore(int homeScore, int awayScore) {
+        if(homeScore < 0 || awayScore < 0) throw new IllegalArgumentException();
+
+        this.homeScore = homeScore;
         this.awayScore = awayScore;
     }
 }

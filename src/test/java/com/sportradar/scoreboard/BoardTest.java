@@ -29,14 +29,13 @@ public class BoardTest {
     @Test
     void updateMatchHomeNegativeScore() {
         Match match = new Match("Spain", "Brazil");
-        assertThrows(IllegalArgumentException.class, () -> match.setHomeScore(-1));
+        assertThrows(IllegalArgumentException.class, () -> match.updateScore(-1, 2));
     }
 
     @Test
     void updateMatchAwayNegativeScore() {
         Match match = new Match("Spain", "Brazil");
-        assertThrows(IllegalArgumentException.class, () -> match.setAwayScore(-3));
-
+        assertThrows(IllegalArgumentException.class, () -> match.updateScore(1, -3));
     }
 
     @Test
