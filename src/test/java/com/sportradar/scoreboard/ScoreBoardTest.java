@@ -36,7 +36,7 @@ public class ScoreBoardTest {
     @Test
     void finishMatch() {
         scoreBoard.startMatch(ARGENTINA, AUSTRALIA);
-        scoreBoard.finishMatch();
+        scoreBoard.finishMatch(ARGENTINA, AUSTRALIA);
 
         assertTrue(scoreBoard.getSummary().isEmpty());
     }
