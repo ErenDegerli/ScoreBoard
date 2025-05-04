@@ -1,6 +1,11 @@
 package com.sportradar.scoreboard;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.List;
 
 import static com.sportradar.scoreboard.TestConstants.BRAZIL;
 import static com.sportradar.scoreboard.TestConstants.SPAIN;
@@ -35,16 +40,18 @@ public class MatchTest {
         assertEquals(4, match.totalScore());
     }
 
-    @Test
-    void updateMatchHomeNegativeScore() {
+    private static List<Arguments> negativeScores() {
+        return List.of(
+                Arguments.of(-1, 0),
+                Arguments.of(0, -1),
+                Arguments.of(-10, -5)
+        );
+    }
+    @ParameterizedTest
+    @MethodSource("negativeScores")
+    void updateMatchWithNegativeScores() {
         Match match = new Match(SPAIN, BRAZIL);
         assertThrows(IllegalArgumentException.class, () -> match.updateScore(-1, 2));
-    }
-
-    @Test
-    void updateMatchAwayNegativeScore() {
-        Match match = new Match(SPAIN, BRAZIL);
-        assertThrows(IllegalArgumentException.class, () -> match.updateScore(1, -3));
     }
 
     @Test
