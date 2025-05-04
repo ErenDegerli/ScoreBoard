@@ -60,4 +60,9 @@ public class ScoreBoardTest {
                 () -> assertEquals(0, match.getAwayScore())
         );
     }
+
+    @Test
+    void updateNonExistingMatch() {
+        assertThrows(IllegalArgumentException.class, () -> scoreBoard.updateScore(ARGENTINA, AUSTRALIA, 1, 0));
+    }
 }
