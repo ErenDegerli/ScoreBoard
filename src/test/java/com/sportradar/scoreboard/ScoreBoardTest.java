@@ -12,6 +12,8 @@ public class ScoreBoardTest {
     private ScoreBoard scoreBoard;
     private final String ARGENTINA = "Argentina";
     private final String AUSTRALIA = "Australia";
+    private final String SPAIN = "Spain";
+    private final String BRAZIL = "Brazil";
 
     @BeforeEach
     void setup() {
@@ -64,5 +66,22 @@ public class ScoreBoardTest {
     @Test
     void updateNonExistingMatch() {
         assertThrows(IllegalArgumentException.class, () -> scoreBoard.updateScore(ARGENTINA, AUSTRALIA, 1, 0));
+    }
+
+    @Test
+    void orderMatchesByScore() {
+        scoreBoard.startMatch(ARGENTINA, AUSTRALIA);
+        scoreBoard.startMatch(SPAIN, BRAZIL);
+        scoreBoard.updateScore(SPAIN, BRAZIL, 1, 1);
+
+        Match firstMatch = scoreBoard.getSummary().get(0);
+        Match secondMatch = scoreBoard.getSummary().get(1);
+
+        assertAll(
+                () -> assertEquals(SPAIN, firstMatch.getHomeTeam()),
+                () -> assertEquals(BRAZIL, firstMatch.getAwayTeam()),
+                () -> assertEquals(ARGENTINA, secondMatch.getHomeTeam()),
+                () -> assertEquals(AUSTRALIA, secondMatch.getAwayTeam())
+        );
     }
 }
