@@ -20,7 +20,8 @@ public class BoardTest {
     @Test
     void updateMatch() {
         Match match = new Match("Spain", "Brazil");
-        match.updateMatch(1, 0);
+        match.setHomeScore(1);
+        match.setAwayScore(3);
 
         assertEquals(1, match.getHomeScore());
         assertEquals(3, match.getAwayScore());
