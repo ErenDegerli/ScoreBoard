@@ -74,14 +74,21 @@ public class ScoreBoardTest {
         scoreBoard.startMatch(SPAIN, BRAZIL);
         scoreBoard.updateScore(SPAIN, BRAZIL, 1, 1);
 
-        Match firstMatch = scoreBoard.getSummary().get(0);
-        Match secondMatch = scoreBoard.getSummary().get(1);
-
-        assertAll(
-                () -> assertEquals(SPAIN, firstMatch.getHomeTeam()),
-                () -> assertEquals(BRAZIL, firstMatch.getAwayTeam()),
-                () -> assertEquals(ARGENTINA, secondMatch.getHomeTeam()),
-                () -> assertEquals(AUSTRALIA, secondMatch.getAwayTeam())
+        assertSummaryOrder(
+                formatMatchSummary(SPAIN, 1, 1, BRAZIL),
+                formatMatchSummary(ARGENTINA, 0, 0, AUSTRALIA)
         );
+    }
+
+    private String formatMatchSummary(String homeTeam, int homeScore, int awayScore, String awayTeam) {
+        return String.format("%s %d - %d %s", homeTeam, homeScore, awayScore, awayTeam);
+    }
+
+    private void assertSummaryOrder(String... expectedMatches) {
+        List<String> actual = scoreBoard.getSummary().stream()
+                .map(Match::toString)
+                .toList();
+
+        assertEquals(List.of(expectedMatches), actual);
     }
 }

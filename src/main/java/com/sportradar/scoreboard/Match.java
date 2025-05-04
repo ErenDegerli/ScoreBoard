@@ -50,4 +50,9 @@ public class Match {
     public int totalScore() {
         return homeScore + awayScore;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s %d - %d %s", homeTeam, homeScore, awayScore, awayTeam);
+    }
 }
