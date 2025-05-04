@@ -1,6 +1,7 @@
 package com.sportradar.scoreboard;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class ScoreBoard {
@@ -19,7 +20,9 @@ public class ScoreBoard {
     }
 
     public List<Match> getSummary() {
-        return matches;
+        return matches.stream()
+                .sorted(Comparator.comparingInt(Match::totalScore).reversed())
+                .toList();
     }
 
     public void finishMatch(String homeTeam, String awayTeam) {
