@@ -1,5 +1,7 @@
 package com.sportradar.scoreboard;
 
+import java.util.Objects;
+
 public class Match {
 
     private final String homeTeam;
@@ -8,8 +10,8 @@ public class Match {
     private int awayScore;
 
     public Match(String homeTeam, String awayTeam) {
-        this.homeTeam = homeTeam;
-        this.awayTeam = awayTeam;
+        this.homeTeam = Objects.requireNonNull(homeTeam);
+        this.awayTeam = Objects.requireNonNull(awayTeam);
         this.homeScore = 0;
         this.awayScore = 0;
     }
