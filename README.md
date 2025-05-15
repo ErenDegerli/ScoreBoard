@@ -21,4 +21,4 @@ This is a simple Java Library that allows tracking and managing live football ma
 - Maven
 
 ## Author
-Built as a coding exercise by [Eren Degerli]
+Built as a coding exercise by [Eren Degerli] .
